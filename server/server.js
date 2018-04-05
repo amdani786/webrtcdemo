@@ -1,5 +1,5 @@
 const HTTPS_PORT = process.env.OPENSHIFT_NODEJS_PORT || 8443;
-var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var server_ip_address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 const fs = require('fs');
 const https = require('https');
@@ -29,6 +29,7 @@ const handleRequest = function(request, response) {
 };
 
 const httpsServer = https.createServer(serverConfig, handleRequest);
+console.log('Address: ' + server_ip_address + ':' + HTTPS_PORT);
 httpsServer.listen(HTTPS_PORT, server_ip_address);
 
 // ----------------------------------------------------------------------------------------
